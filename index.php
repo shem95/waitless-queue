@@ -13,6 +13,18 @@ try {
     die("Database connection error: " . $e->getMessage());
 }
 
+// إنشاء جدول الحجوزات تلقائياً لو كان غير موجود (PostgreSQL)
+$pdo->exec("
+    CREATE TABLE IF NOT EXISTS reservations (
+        id SERIAL PRIMARY KEY,
+        full_name    VARCHAR(100) NOT NULL,
+        people_count INT          NOT NULL,
+        phone        VARCHAR(20)  NOT NULL,
+        status       VARCHAR(20)  DEFAULT 'waiting',
+        created_at   TIMESTAMPTZ  DEFAULT CURRENT_TIMESTAMP
+    );
+");
+
 
 
 // ================= تصفير الأدوار يوميًا =================
@@ -264,9 +276,8 @@ th{background:#f3f3f3}
   <!-- الهيدر + اللوقو -->
   <div class="header">
     <div>
-      <div class="logo-text-main">WaitLess (محلي)</div>
-      <div class="logo-text-sub">نظام ذكي لتنظيم طابور المطعم على XAMPP</div>
-      <span class="tag">يتم تصفير الأدوار تلقائياً كل يوم</span>
+      <div class="logo-text-main">WaitLess</div>
+      <div class="logo-text-sub">نظام ذكي لتنظيم طابور المطعم إلكترونياََ</div>
     </div>
 
     <div class="logo-box">
@@ -285,16 +296,16 @@ th{background:#f3f3f3}
       <div class="queue-number" style="color:var(--danger);">
         <?= $currentNumber > 0 ? $currentNumber : '—' ?>
       </div>
-      <div class="queue-label">🔴 الدور الحالي</div>
+      <div class="queue-label"> الدور الحالي</div>
     </div>
 
     <div class="card">
       <div class="queue-number" style="color:var(--success);">
         <?= $nextNumber ?>
       </div>
-      <div class="queue-label">🟢 الدور التالي</div>
+      <div class="queue-label">الدور التالي</div>
       <div class="queue-eta">
-        ⏳ تقريباً: <?= $etaNextDisplay ?> دقيقة
+         تقريباً: <?= $etaNextDisplay ?> دقيقة
       </div>
     </div>
   </div>
@@ -305,10 +316,10 @@ th{background:#f3f3f3}
   <div class="card">
     <?php if ($yourNumber): ?>
       <div class="success-card animate-number">
-        <strong>تم حجز دورك 🎉</strong><br>
+        <strong>تم حجز دورك بنجاح ✅</strong><br>
         رقمك هو: <strong style="color:#22a55e; font-size:18px;"><?= $yourNumber ?></strong><br>
         <span style="font-size:13px;color:#333">
-          ⏳ الوقت المتوقع حتى دورك: <?= $etaForYou ?> دقيقة
+           الوقت المتوقع حتى دورك: <?= $etaForYou ?> دقيقة
         </span>
       </div>
     <?php endif; ?>
@@ -329,7 +340,7 @@ th{background:#f3f3f3}
       <label>رقم الجوال</label>
       <input type="tel" name="phone" value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>">
 
-      <button class="btn-primary">🎫 احصل على رقم الانتظار</button>
+      <button class="btn-primary"> احصل على رقم الانتظار</button>
     </form>
   </div>
 
@@ -407,5 +418,6 @@ window.addEventListener('load', function () {
 
 </body>
 </html>
+
 
 
