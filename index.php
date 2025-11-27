@@ -1,22 +1,19 @@
 <?php
-// ================= إعداد اتصال قاعدة البيانات (محلي XAMPP) =================
-$host    = "localhost";
-$db      = "waitless_db";   // اسم قاعدة البيانات عندك في XAMPP
-$user    = "root";
-$pass    = "";              // في XAMPP غالبًا فاضي
-$charset = "utf8mb4";
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-];
+$host = "dpg-d4jqjoje5dus73episqg-a.render.com";
+$db = "waitless_db";
+$user = "waitless_db_user";
+$pass = "e8qno4XAnpOnFsdi1xJXz3zzAPHIIV0F";
+$dsn = "pgsql:host=$host;port=5432;dbname=$db;";
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
 } catch (Exception $e) {
-    die("⚠ مشكلة اتصال بقاعدة البيانات: " . $e->getMessage());
+    die("Database connection error: " . $e->getMessage());
 }
+
+
 
 // ================= تصفير الأدوار يوميًا =================
 // الفكرة: نخزن تاريخ آخر تصفير في ملف نصي، إذا تغيّر اليوم → نصفر الجدول
@@ -410,3 +407,4 @@ window.addEventListener('load', function () {
 
 </body>
 </html>
+
