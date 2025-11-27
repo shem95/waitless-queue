@@ -88,12 +88,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // ================= حجوزات اليوم =================
 $todays = $pdo->query("
-  SELECT id, full_name, people_count, status, TIME(created_at) AS time
+  SELECT
+    id,
+    full_name,
+    people_count,
+    status,
+    TO_CHAR(created_at, 'HH24:MI') AS time
   FROM reservations
-  WHERE DATE(created_at) = CURDATE()
+  WHERE created_at::date = CURRENT_DATE
   ORDER BY id ASC
   LIMIT 10
 ")->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -418,6 +424,7 @@ window.addEventListener('load', function () {
 
 </body>
 </html>
+
 
 
 
