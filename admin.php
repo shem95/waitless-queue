@@ -1,5 +1,5 @@
 <?php
-$host = "dpg-d4jqjoje5dus73episqg-a.render.com";
+$host = "dpg-d4jqjoje5dus73episqg-a";
 $db = "waitless_db";
 $user = "waitless_db_user";
 $pass = "e8qno4XAnpOnFsdi1xJXz3zzAPHIIV0F";
@@ -127,4 +127,5 @@ a.action:hover{background:#099454}
 </div>
 </body>
 </html>
+
 
