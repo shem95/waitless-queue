@@ -1,9 +1,17 @@
 <?php
-// اتصال سريع
-$pdo = new PDO('mysql:host=localhost;dbname=waitless_db;charset=utf8mb4', 'root', '', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-]);
+$host = "dpg-d4jqjoje5dus73episqg-a.render.com";
+$db = "waitless_db";
+$user = "waitless_db_user";
+$pass = "e8qno4XAnpOnFsdi1xJXz3zzAPHIIV0F";
+$dsn = "pgsql:host=$host;port=5432;dbname=$db;";
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+} catch (Exception $e) {
+    die("Database connection error: " . $e->getMessage());
+}
 
 
 // تعليم حجز كـ "تمت خدمته" حسب رقم محدد
@@ -119,3 +127,4 @@ a.action:hover{background:#099454}
 </div>
 </body>
 </html>
+
