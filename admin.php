@@ -82,7 +82,7 @@ a.action:hover{background:#099454}
         <div class="title">لوحة إدارة WaitLess</div>
         <div>
             <a class="btn" href="index.php">العودة للواجهة</a>
-            <a class="btn btn-gold" href="?serve_next=1">✅ تقديم الدور التالي</a>
+            <a class="btn btn-gold" href="?serve_next=1">تقديم الدور التالي</a>
         </div>
     </div>
 
@@ -139,6 +139,7 @@ a.action:hover{background:#099454}
 </div>
 </body>
 </html>
+
 
 
 
