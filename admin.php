@@ -13,6 +13,18 @@ try {
     die("Database connection error: " . $e->getMessage());
 }
 
+// إنشاء جدول الحجوزات تلقائياً لو كان غير موجود (PostgreSQL)
+$pdo->exec("
+    CREATE TABLE IF NOT EXISTS reservations (
+        id SERIAL PRIMARY KEY,
+        full_name    VARCHAR(100) NOT NULL,
+        people_count INT          NOT NULL,
+        phone        VARCHAR(20)  NOT NULL,
+        status       VARCHAR(20)  DEFAULT 'waiting',
+        created_at   TIMESTAMPTZ  DEFAULT CURRENT_TIMESTAMP
+    );
+");
+
 
 // تعليم حجز كـ "تمت خدمته" حسب رقم محدد
 if (isset($_GET['serve_id'])) {
@@ -127,5 +139,6 @@ a.action:hover{background:#099454}
 </div>
 </body>
 </html>
+
 
 
