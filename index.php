@@ -1,5 +1,5 @@
 <?php
-$host = "dpg-d4jqjoje5dus73episqg-a.render.com";
+$host = "dpg-d4jqjoje5dus73episqg-a";
 $db = "waitless_db";
 $user = "waitless_db_user";
 $pass = "e8qno4XAnpOnFsdi1xJXz3zzAPHIIV0F";
@@ -407,4 +407,5 @@ window.addEventListener('load', function () {
 
 </body>
 </html>
+
 
