@@ -45,8 +45,8 @@ if (isset($_GET['serve_next'])) {
 }
 
 // استرجاع القوائم
-$waiting = $pdo->query("SELECT id, full_name, people_count, TIME(created_at) AS time FROM reservations WHERE status='waiting' ORDER BY id ASC LIMIT 50")->fetchAll();
-$served  = $pdo->query("SELECT id, full_name, people_count, TIME(created_at) AS time FROM reservations WHERE status='served'  ORDER BY id DESC LIMIT 10")->fetchAll();
+$waiting = $pdo->query("SELECT id, full_name, people_count, TO_CHAR(created_at, 'HH24:MI') AS time FROM reservations WHERE status='waiting' ORDER BY id ASC LIMIT 50")->fetchAll();
+$served  = $pdo->query("SELECT id, full_name, people_count, TO_CHAR(created_at, 'HH24:MI') AS time FROM reservations WHERE status='served'  ORDER BY id DESC LIMIT 10")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -139,6 +139,7 @@ a.action:hover{background:#099454}
 </div>
 </body>
 </html>
+
 
 
 
